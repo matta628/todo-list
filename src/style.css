@@ -1,6 +1,5 @@
 :root {
   --main-header: #de0437;
-  --main-bg: #0f1937;
   --main-outline: #1d0505;
 }
 
@@ -11,7 +10,7 @@
 }
 
 #content{
-  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  background: linear-gradient(135deg, #d53369 0%, #daae51 100%);
   min-height: 100vh;
   min-width: 100vw;
 
