@@ -33,14 +33,16 @@
 .main{
   flex: 1;
   padding: 50px;
-
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  /* display: grid;
   grid: "spotlight side-projects" 1fr
         /5fr 3fr;
-  gap: 50px;
+  gap: 50px; */
 }
 .spotlight{
-  grid-area: spotlight;
+  /* grid-area: spotlight; */
+  flex: 1;
   border: 2px solid var(--main-outline);
 }
 .side-projects{
