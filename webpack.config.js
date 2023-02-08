@@ -7,7 +7,7 @@ module.exports = {
     index: './src/index.js',
     init: './src/init.js',
     project: './src/project',
-    user_work: './user_work.js',
+    user_work: './src/user_work.js',
   },
   devtool: 'inline-source-map',
   devServer: {
