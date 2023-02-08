@@ -47,6 +47,7 @@
   flex-direction: column;
   gap: 30px;
   overflow-y: auto;
+  font-size: 24px;
 }
 .side-projects{
   /* grid-area: side-projects; */
@@ -58,7 +59,14 @@
   min-height: 250px;
 }
 .project-name{
-  font-size: 24px;
   border: 1px solid var(--main-outline);
   height: 30px;
+}
+
+.spotlight button{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 24px;
+  background-color: transparent;
+  color: black;
+  min-height: max-content;
 }

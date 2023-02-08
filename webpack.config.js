@@ -8,7 +8,8 @@ module.exports = {
     init: './src/init.js',
     project: './src/project',
     user_work: './src/user_work.js',
-    project_display: './src/project_display.js',
+    projects_display: './src/projects_display.js',
+    projects_create: '/src/projects_create.js',
   },
   devtool: 'inline-source-map',
   devServer: {

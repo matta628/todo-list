@@ -3,6 +3,7 @@ import initPage from './init';
 import Project from './project';
 import UserWork from './user_work';
 import displayAllProjects from './projects_display';
+import addProjectCreateButton from './projects_create';
 
 initPage();
 
@@ -19,3 +20,4 @@ function makeExampleProjects() {
 makeExampleProjects();
 
 displayAllProjects(userWork.getProjects());
+addProjectCreateButton();
