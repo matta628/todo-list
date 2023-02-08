@@ -15,5 +15,22 @@ function makeProjects() {
   const project3 = Project('The Odin Project', 'learn web dev shit :D', []);
   userWork.addProject(project3);
 }
-
 makeProjects();
+
+function displayProject(project) {
+  const spotlight = document.querySelector('.spotlight');
+  const projectDOM = document.createElement('div');
+  projectDOM.classList.add('project');
+  const projectName = document.createElement('div');
+  projectName.classList.add('project-name');
+  projectName.innerHTML = project.getName();
+  projectDOM.appendChild(projectName);
+  spotlight.appendChild(projectDOM);
+}
+
+function displayAllProjects() {
+  // eventually refactor into its own module
+  userWork.getProjects().forEach((project) => displayProject(project));
+}
+
+displayAllProjects();
