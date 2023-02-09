@@ -57,10 +57,14 @@
 .project {
   border: 2px solid var(--main-outline);
   min-height: 250px;
+  display: flex;
+  flex-direction: column;
 }
 .project-name{
   border: 1px solid var(--main-outline);
-  height: 30px;
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .spotlight button{
@@ -69,4 +73,30 @@
   background-color: transparent;
   color: black;
   min-height: max-content;
+}
+
+input {
+  background-color: transparent;
+  font-size: 24px;
+  font-family: 'Times New Roman', Times, serif;
+  border-radius: 5px;
+}
+
+.name-input{
+  display: flex;
+  gap: 10px;
+}
+
+#form{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.submit-project{
+  align-self: center;
+}
+input[type=submit] {
+  padding: 5px 15px;
 }

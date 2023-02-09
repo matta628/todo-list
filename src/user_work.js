@@ -6,4 +6,6 @@ const UserWork = () => {
   return { addProject, getProjects };
 };
 
-export default UserWork;
+const userWork = UserWork();
+
+export default userWork;

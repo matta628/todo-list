@@ -1,13 +1,11 @@
 import './style.css';
 import initPage from './init';
 import Project from './project';
-import UserWork from './user_work';
+import userWork from './user_work';
 import displayAllProjects from './projects_display';
 import addProjectCreateButton from './projects_create';
 
 initPage();
-
-const userWork = UserWork();
 
 function makeExampleProjects() {
   const project1 = Project('Daily To Do', 'what i want to do everyday to improve my life', []);
