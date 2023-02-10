@@ -1,13 +1,19 @@
+/* eslint-disable no-console */
 import userWork from './user_work';
 import Project from './project';
+import spotlightDisplayer from './projects_display';
 
 function submitNewProject(event) {
-  const form = document.getElementById('form');
-  form.reset();
-
   const name = document.getElementById('new-project-name').value;
-  userWork.addProject(Project(name, 'desc...', []));
+  const newProject = Project(name, 'TODO: collect desc', []);
+  userWork.addProject(newProject);
 
+  const formWrapper = document.querySelector('.project-form');
+  spotlightDisplayer.removeChild(formWrapper);
+
+  const newProjectDOM = spotlightDisplayer.createProjectDOM(newProject);
+  const projectCreateButton = document.querySelector('.project-create-button');
+  spotlightDisplayer.addChildBefore(newProjectDOM, projectCreateButton);
   event.preventDefault();
 }
 
@@ -49,21 +55,19 @@ function createProjectForm() {
 }
 
 function createProject() {
-  const spotlight = document.querySelector('.spotlight');
   const projectCreateForm = createProjectForm();
   const projectCreateButton = document.querySelector('.project-create-button');
-  spotlight.insertBefore(projectCreateForm, projectCreateButton);
-  spotlight.scrollTop = spotlight.scrollHeight;
+  spotlightDisplayer.addChildBefore(projectCreateForm, projectCreateButton);
+  spotlightDisplayer.scrollToBottom();
 }
 
 function addProjectCreateButton() {
-  const spotlight = document.querySelector('.spotlight');
   const projectCreateButton = document.createElement('button');
   projectCreateButton.classList.add('project-create-button');
   projectCreateButton.innerHTML = '+ Add Project';
   projectCreateButton.addEventListener('click', createProject);
 
-  spotlight.appendChild(projectCreateButton);
+  spotlightDisplayer.addChild(projectCreateButton);
 }
 
 export default addProjectCreateButton;

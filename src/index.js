@@ -2,7 +2,7 @@ import './style.css';
 import initPage from './init';
 import Project from './project';
 import userWork from './user_work';
-import displayAllProjects from './projects_display';
+import spotlightDisplayer from './projects_display';
 import addProjectCreateButton from './projects_create';
 
 initPage();
@@ -15,7 +15,9 @@ function makeExampleProjects() {
   const project3 = Project('The Odin Project', 'learn web dev shit :D', []);
   userWork.addProject(project3);
 }
+
 makeExampleProjects();
 
-displayAllProjects(userWork.getProjects());
+spotlightDisplayer.displayAllProjects();
+
 addProjectCreateButton();
