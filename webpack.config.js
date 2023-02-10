@@ -9,7 +9,8 @@ module.exports = {
     project: './src/project',
     user_work: './src/user_work.js',
     projects_display: './src/projects_display.js',
-    projects_create: '/src/projects_create.js',
+    projects_create: './src/projects_create.js',
+    project_form: './src/project_form.js',
   },
   devtool: 'inline-source-map',
   devServer: {
