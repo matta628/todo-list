@@ -100,3 +100,7 @@ input {
 input[type=submit] {
   padding: 5px 15px;
 }
+
+#new-project-description {
+  width: 100%;
+}

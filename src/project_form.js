@@ -4,7 +4,8 @@ import spotlightDisplayer from './projects_display';
 
 function submitNewProject(event) {
   const name = document.getElementById('new-project-name').value;
-  const newProject = Project(name, 'TODO: collect desc', []);
+  const desc = document.getElementById('new-project-description').value;
+  const newProject = Project(name, desc, []);
   userWork.addProject(newProject);
 
   const formWrapper = document.querySelector('.project-form');
@@ -16,6 +17,24 @@ function submitNewProject(event) {
   event.preventDefault();
 }
 
+function createFormInputDiv(name, type, required) {
+  const formDiv = document.createElement('div');
+  formDiv.classList.add(`${name}-input`);
+
+  const label = document.createElement('label');
+  label.innerHTML = `${name.charAt(0).toUpperCase()}${name.slice(1)}: `;
+  label.setAttribute('for', `new-project-${name}`);
+  formDiv.appendChild(label);
+
+  const input = document.createElement('input');
+  input.setAttribute('type', type);
+  input.setAttribute('id', `new-project-${name}`);
+  input.setAttribute('name', `new-project-${name}`);
+  input.required = required;
+  formDiv.appendChild(input);
+  return formDiv;
+}
+
 function createProjectForm() {
   const projectCreateForm = document.createElement('div');
   projectCreateForm.classList.add('project-form', 'project');
@@ -24,27 +43,19 @@ function createProjectForm() {
   form.setAttribute('id', 'form');
   projectCreateForm.appendChild(form);
 
-  const nameLabel = document.createElement('label');
-  nameLabel.innerHTML = 'Name: ';
-  nameLabel.setAttribute('for', 'new-project-name');
-  const nameInput = document.createElement('input');
-  nameInput.setAttribute('type', 'text');
-  nameInput.setAttribute('id', 'new-project-name');
-  nameInput.setAttribute('name', 'new-project-name');
-  nameInput.required = true;
-
-  const name = document.createElement('div');
-  name.classList.add('project-name', 'name-input');
-  name.appendChild(nameLabel);
-  name.appendChild(nameInput);
+  const name = createFormInputDiv('name', 'text', true);
+  name.classList.add('project-name');
   form.appendChild(name);
+
+  const desc = createFormInputDiv('description', 'text', false);
+  form.appendChild(desc);
+
+  const submitProject = document.createElement('div');
+  submitProject.classList.add('submit-project');
 
   const submitProjectButton = document.createElement('input');
   submitProjectButton.setAttribute('type', 'submit');
   submitProjectButton.setAttribute('id', 'submit-project-button');
-
-  const submitProject = document.createElement('div');
-  submitProject.classList.add('submit-project');
   submitProject.appendChild(submitProjectButton);
   form.appendChild(submitProject);
 
@@ -53,4 +64,4 @@ function createProjectForm() {
   return projectCreateForm;
 }
 
-export default createProjectForm();
+export default createProjectForm;
