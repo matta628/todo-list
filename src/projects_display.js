@@ -2,6 +2,13 @@
 import userWork from './user_work';
 
 const SpotlightDisplayer = () => {
+  const createAddTodoButton = () => {
+    const addTodoButton = document.createElement('button');
+    addTodoButton.classList.add('add-todo-button');
+    addTodoButton.innerHTML = '+ Add Todo';
+    return addTodoButton;
+  };
+
   const displayProjectTodos = (project) => {
     const todos = document.createElement('div');
     todos.classList.add('project-todos');
@@ -21,6 +28,8 @@ const SpotlightDisplayer = () => {
 
       todos.appendChild(todoDOM);
     });
+    const addTodoButton = createAddTodoButton();
+    todos.appendChild(addTodoButton);
     return todos;
   };
 

@@ -85,6 +85,9 @@
 .todo:last-child{
   border-bottom: none;
 }
+.add-todo-button{
+  margin: 1px;
+}
 
 
 .spotlight button{
