@@ -55,14 +55,14 @@
 }
 
 .project {
-  border: 2px solid var(--main-outline);
+  border: 3px solid var(--main-outline);
   min-height: 250px;
   display: flex;
   flex-direction: column;
 }
 .project-name{
   padding: 0px 5px;
-  border: 1px solid var(--main-outline);
+  border-bottom: 2px solid var(--main-outline);
   height: 40px;
   display: flex;
   align-items: center;
@@ -78,9 +78,14 @@
   padding: 0px 5px;
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  border-bottom: 2px solid black;
+  flex: 1;
   min-height: 50px;
 }
+.todo:last-child{
+  border-bottom: none;
+}
+
 
 .spotlight button{
   font-family: 'Times New Roman', Times, serif;
