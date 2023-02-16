@@ -30,7 +30,7 @@
 }
 .main{
   max-height: 90vh;
-  padding: 50px;
+  padding: 50px 100px;
   display: flex;
   flex-direction: column;
   /* display: grid;
@@ -40,12 +40,12 @@
 }
 .spotlight{
   /* grid-area: spotlight; */
-  padding: 30px;
+  padding: 50px;
   border: 2px solid var(--main-outline);
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 50px;
   overflow-y: auto;
   font-size: 24px;
 }
@@ -61,10 +61,25 @@
   flex-direction: column;
 }
 .project-name{
+  padding: 0px 5px;
   border: 1px solid var(--main-outline);
   height: 40px;
   display: flex;
   align-items: center;
+}
+
+.project-todos{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+.todo {
+  padding: 0px 5px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  min-height: 50px;
 }
 
 .spotlight button{
@@ -104,3 +119,4 @@ input[type=submit] {
 #new-project-description {
   width: 100%;
 }
+

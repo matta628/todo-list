@@ -2,6 +2,28 @@
 import userWork from './user_work';
 
 const SpotlightDisplayer = () => {
+  const displayProjectTodos = (project) => {
+    const todos = document.createElement('div');
+    todos.classList.add('project-todos');
+    project.getTodos().forEach((todo) => {
+      const todoDOM = document.createElement('div');
+      todoDOM.classList.add('todo');
+
+      const todoName = document.createElement('div');
+      todoName.classList.add('todo-name');
+      todoName.innerHTML = todo.getName();
+      todoDOM.appendChild(todoName);
+
+      const todoDueDate = document.createElement('div');
+      todoDueDate.classList.add('todo-due-date');
+      todoDueDate.innerHTML = todo.getDueDate();
+      todoDOM.appendChild(todoDueDate);
+
+      todos.appendChild(todoDOM);
+    });
+    return todos;
+  };
+
   const createProjectDOM = (project) => {
     const projectDOM = document.createElement('div');
     projectDOM.classList.add('project');
@@ -9,6 +31,8 @@ const SpotlightDisplayer = () => {
     projectName.classList.add('project-name');
     projectName.innerHTML = project.getName();
     projectDOM.appendChild(projectName);
+    const todos = displayProjectTodos(project);
+    projectDOM.appendChild(todos);
     return projectDOM;
   };
 

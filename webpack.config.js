@@ -11,6 +11,7 @@ module.exports = {
     projects_display: './src/projects_display.js',
     projects_create: './src/projects_create.js',
     project_form: './src/project_form.js',
+    todo_list: './src/todo_list.js',
   },
   devtool: 'inline-source-map',
   devServer: {
