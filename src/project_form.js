@@ -6,12 +6,14 @@ function submitNewProject(event) {
   const name = document.getElementById('new-project-name').value;
   const desc = document.getElementById('new-project-description').value;
   const newProject = Project(name, desc, []);
-  userWork.addProject(newProject);
+  const id = userWork.addProject(newProject);
+  console.log({ id });
 
   const formWrapper = document.querySelector('.project-form');
   spotlightDisplayer.removeChild(formWrapper);
 
   const newProjectDOM = spotlightDisplayer.createProjectDOM(newProject);
+  newProjectDOM.dataset.id = id;
   const projectCreateButton = document.querySelector('.project-create-button');
   spotlightDisplayer.addChildBefore(newProjectDOM, projectCreateButton);
   event.preventDefault();

@@ -1,8 +1,11 @@
 const UserWork = () => {
-  let id = 0;
+  let id = -1;
   const projects = [];
 
-  const addProject = (project) => projects.push({ [id++]: project });
+  const addProject = (project) => {
+    projects.push({ [++id]: project });
+    return id;
+  };
   const getProjects = () => projects;
   const getProject = (targetId) => {
     for (let i = 0; i < projects.length; i++) {
