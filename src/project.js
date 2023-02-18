@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-const Project = (name, desc, todos) => {
+const Project = (name, desc) => {
+  const todos = [];
   const getName = () => name;
   const getDesc = () => desc;
   const getTodos = () => todos;
