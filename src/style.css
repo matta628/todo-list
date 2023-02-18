@@ -88,8 +88,10 @@
 .add-todo-button{
   margin: 1px;
 }
-.submit-todo{
+.todo-buttons{
   align-self: center;
+  display: flex; 
+  gap: 5px;
 }
 #todo-form{
   padding: 5px;
@@ -129,8 +131,10 @@ input {
 .submit-project{
   align-self: center;
 }
-input[type=submit] {
+input[type=submit],
+#cancel-button {
   padding: 5px 15px;
+  border-radius: 10px;
 }
 
 #new-project-description {

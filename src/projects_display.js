@@ -43,6 +43,15 @@ const SpotlightDisplayer = () => {
     return formDiv;
   };
 
+  const deleteTodoForm = (todoForm) => {
+    const todoDiv = todoForm.parentNode;
+    console.log(todoDiv);
+    console.log(todoDiv.lastChild);
+
+    todoDiv.lastChild.style.display = 'block';
+    todoDiv.removeChild(todoForm);
+  };
+
   const createTodoForm = () => {
     const todoForm = document.createElement('div');
 
@@ -88,14 +97,20 @@ const SpotlightDisplayer = () => {
     const status = createFormInputDiv('status', 'Status: ', 'checkbox', true);
     form.appendChild(status);
 
-    const submitTodo = document.createElement('div');
-    submitTodo.classList.add('submit-todo');
+    const todoFormButtons = document.createElement('div');
+    todoFormButtons.classList.add('todo-buttons');
+
+    const cancelButton = document.createElement('button');
+    cancelButton.setAttribute('id', 'cancel-button');
+    cancelButton.innerHTML = 'Cancel';
+    cancelButton.addEventListener('click', deleteTodoForm.bind(this, todoForm));
+    todoFormButtons.appendChild(cancelButton);
 
     const submitTodoButton = document.createElement('input');
     submitTodoButton.setAttribute('type', 'submit');
     submitTodoButton.setAttribute('id', 'submit-todo-button');
-    submitTodo.appendChild(submitTodoButton);
-    form.appendChild(submitTodo);
+    todoFormButtons.appendChild(submitTodoButton);
+    form.appendChild(todoFormButtons);
 
     return todoForm;
   };
