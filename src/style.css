@@ -88,6 +88,15 @@
 .add-todo-button{
   margin: 1px;
 }
+.submit-todo{
+  align-self: center;
+}
+#todo-form{
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
 
 .spotlight button{
@@ -110,7 +119,7 @@ input {
   gap: 10px;
 }
 
-#form{
+#project-form{
   flex: 1;
   display: flex;
   flex-direction: column;

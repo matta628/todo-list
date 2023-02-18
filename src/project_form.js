@@ -40,7 +40,7 @@ function createProjectForm() {
   projectCreateForm.classList.add('project-form', 'project');
 
   const form = document.createElement('form');
-  form.setAttribute('id', 'form');
+  form.setAttribute('id', 'project-form');
   projectCreateForm.appendChild(form);
 
   const name = createFormInputDiv('name', 'text', true);
