@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import userWork from './user_work';
+import TodoList from './todo_list';
 
 const SpotlightDisplayer = () => {
   const createAddTodoButton = () => {
@@ -45,11 +46,28 @@ const SpotlightDisplayer = () => {
 
   const deleteTodoForm = (todoForm) => {
     const todoDiv = todoForm.parentNode;
-    console.log(todoDiv);
-    console.log(todoDiv.lastChild);
-
     todoDiv.lastChild.style.display = 'block';
     todoDiv.removeChild(todoForm);
+  };
+
+  const submitNewTodo = (event) => {
+    console.log(event);
+    const todoForm = event.target.parentNode;
+    const name = todoForm.querySelector('#new-todo-name').value;
+    const desc = todoForm.querySelector('#new-todo-desc').value;
+    const dueDate = todoForm.querySelector('#new-todo-dueDate').value;
+    const priority = todoForm.querySelector('#new-todo-priority').value;
+    const status = todoForm.querySelector('#new-todo-status').checked;
+
+    const newTodo = TodoList(name, desc, dueDate, priority, status);
+    console.log(newTodo);
+    // now must add todo to project.. and display todo..
+
+    const todos = todoForm.parentNode;
+    todos.removeChild(todoForm);
+    todos.lastChild.style.display = 'block';
+
+    event.preventDefault();
   };
 
   const createTodoForm = () => {
@@ -73,12 +91,12 @@ const SpotlightDisplayer = () => {
 
     const priorityDiv = document.createElement('div');
     const priorityLabel = document.createElement('label');
-    priorityLabel.setAttribute('for', 'priority');
+    priorityLabel.setAttribute('for', 'new-todo-priority');
     priorityLabel.innerHTML = 'Priority: ';
     priorityDiv.appendChild(priorityLabel);
     const priority = document.createElement('select');
-    priority.setAttribute('name', 'priority');
-    priority.setAttribute('id', 'priority');
+    priority.setAttribute('name', 'new-todo-priority');
+    priority.setAttribute('id', 'new-todo-priority');
     const low = document.createElement('option');
     low.value = 'low';
     low.innerHTML = 'low';
@@ -94,7 +112,7 @@ const SpotlightDisplayer = () => {
     priorityDiv.appendChild(priority);
     form.appendChild(priorityDiv);
 
-    const status = createFormInputDiv('status', 'Status: ', 'checkbox', true);
+    const status = createFormInputDiv('status', 'Status: ', 'checkbox', false);
     form.appendChild(status);
 
     const todoFormButtons = document.createElement('div');
@@ -112,10 +130,11 @@ const SpotlightDisplayer = () => {
     todoFormButtons.appendChild(submitTodoButton);
     form.appendChild(todoFormButtons);
 
+    form.addEventListener('submit', submitNewTodo);
     return todoForm;
   };
 
-  const addTodo = (project, projectDOM) => {
+  const addTodoForm = (project, projectDOM) => {
     const todoForm = createTodoForm();
     todoForm.classList.add('todo-form');
     const todos = projectDOM.lastChild;
@@ -133,7 +152,7 @@ const SpotlightDisplayer = () => {
       todos.appendChild(todoDOM);
     });
     const addTodoButton = createAddTodoButton();
-    addTodoButton.addEventListener('click', addTodo.bind(this, project, projectDOM));
+    addTodoButton.addEventListener('click', addTodoForm.bind(this, project, projectDOM));
     todos.appendChild(addTodoButton);
     return todos;
   };
