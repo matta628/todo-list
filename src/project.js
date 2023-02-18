@@ -3,7 +3,10 @@ const Project = (name, desc, todos) => {
   const getName = () => name;
   const getDesc = () => desc;
   const getTodos = () => todos;
-  return { getName, getDesc, getTodos };
+  const addTodo = (todo) => todos.push(todo);
+  return {
+    getName, getDesc, getTodos, addTodo,
+  };
 };
 
 export default Project;

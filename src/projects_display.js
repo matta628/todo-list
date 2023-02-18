@@ -51,22 +51,22 @@ const SpotlightDisplayer = () => {
   };
 
   const submitNewTodo = (event) => {
-    console.log(event);
     const todoForm = event.target.parentNode;
     const name = todoForm.querySelector('#new-todo-name').value;
     const desc = todoForm.querySelector('#new-todo-desc').value;
     const dueDate = todoForm.querySelector('#new-todo-dueDate').value;
     const priority = todoForm.querySelector('#new-todo-priority').value;
     const status = todoForm.querySelector('#new-todo-status').checked;
-
     const newTodo = TodoList(name, desc, dueDate, priority, status);
-    console.log(newTodo);
-    // now must add todo to project.. and display todo..
 
-    const todos = todoForm.parentNode;
-    todos.removeChild(todoForm);
-    todos.lastChild.style.display = 'block';
-
+    const todoDiv = todoForm.parentNode;
+    todoDiv.removeChild(todoForm);
+    todoDiv.lastChild.style.display = 'block';
+    const projectDOM = todoDiv.parentNode;
+    const { id } = projectDOM.dataset;
+    const project = userWork.getProject(id);
+    project.addTodo(newTodo);
+    todoDiv.insertBefore(createTodoDOM(newTodo), todoDiv.lastChild);
     event.preventDefault();
   };
 
@@ -169,15 +169,20 @@ const SpotlightDisplayer = () => {
     return projectDOM;
   };
 
-  const displayProject = (project) => {
+  const displayProject = (project, id) => {
     const spotlight = document.querySelector('.spotlight');
     const projectDOM = createProjectDOM(project);
+    projectDOM.dataset.id = id;
     spotlight.appendChild(projectDOM);
   };
 
   const displayAllProjects = () => {
     const projects = userWork.getProjects();
-    projects.forEach((project) => displayProject(project));
+    // projects.forEach((project) => displayProject(project));
+    projects.forEach((obj) => {
+      const [id, project] = Object.entries(obj)[0];
+      displayProject(project, id);
+    });
   };
 
   const addChild = (newDiv) => {
