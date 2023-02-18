@@ -7,7 +7,6 @@ function submitNewProject(event) {
   const desc = document.getElementById('new-project-description').value;
   const newProject = Project(name, desc, []);
   const id = userWork.addProject(newProject);
-  console.log({ id });
 
   const formWrapper = document.querySelector('.project-form');
   spotlightDisplayer.removeChild(formWrapper);

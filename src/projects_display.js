@@ -81,11 +81,11 @@ const SpotlightDisplayer = () => {
     name.classList.add('todo-name');
     form.appendChild(name);
 
-    const desc = createFormInputDiv('desc', 'Description: ', 'text', true);
+    const desc = createFormInputDiv('desc', 'Description: ', 'text', false);
     desc.classList.add('todo-desc');
     form.appendChild(desc);
 
-    const dueDate = createFormInputDiv('dueDate', 'Due Date: ', 'text', true);
+    const dueDate = createFormInputDiv('dueDate', 'Due Date: ', 'text', false);
     dueDate.classList.add('todo-dueDate');
     form.appendChild(dueDate);
 
