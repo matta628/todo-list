@@ -3,7 +3,6 @@ import initPage from './init';
 import Project from './project';
 import userWork from './user_work';
 import spotlightDisplayer from './projects_display';
-import addProjectCreateButton from './projects_create';
 import TodoList from './todo_list';
 
 initPage();
@@ -32,5 +31,3 @@ function makeExampleProjects() {
 makeExampleProjects();
 
 spotlightDisplayer.displayAllProjects();
-
-addProjectCreateButton();

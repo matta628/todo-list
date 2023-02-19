@@ -1,8 +1,29 @@
 /* eslint-disable no-console */
 import userWork from './user_work';
 import TodoList from './todo_list';
+import Project from './project';
 
 const SpotlightDisplayer = () => {
+  const addChild = (newDiv) => {
+    const spotlight = document.querySelector('.spotlight');
+    spotlight.appendChild(newDiv);
+  };
+
+  const addChildBefore = (newDiv, targetDiv) => {
+    const spotlight = document.querySelector('.spotlight');
+    spotlight.insertBefore(newDiv, targetDiv);
+  };
+
+  const removeChild = (target) => {
+    const spotlight = document.querySelector('.spotlight');
+    spotlight.removeChild(target);
+  };
+
+  const scrollToBottom = () => {
+    const spotlight = document.querySelector('.spotlight');
+    spotlight.scrollTop = spotlight.scrollHeight;
+  };
+
   const createAddTodoButton = () => {
     const addTodoButton = document.createElement('button');
     addTodoButton.classList.add('add-todo-button');
@@ -176,33 +197,95 @@ const SpotlightDisplayer = () => {
     spotlight.appendChild(projectDOM);
   };
 
+  const submitNewProject = (event) => {
+    const name = document.getElementById('new-project-name').value;
+    const desc = document.getElementById('new-project-description').value;
+    const newProject = Project(name, desc, []);
+    const id = userWork.addProject(newProject);
+
+    const formWrapper = document.querySelector('.project-form');
+    formWrapper.style.display = 'none';
+    const form = document.querySelector('#project-form');
+    form.reset();
+
+    const newProjectDOM = createProjectDOM(newProject);
+    newProjectDOM.dataset.id = id;
+    addChildBefore(newProjectDOM, formWrapper);
+    event.preventDefault();
+  };
+
+  const createProjectInputDiv = (name, type, required) => {
+    const formDiv = document.createElement('div');
+    formDiv.classList.add(`${name}-input`);
+
+    const label = document.createElement('label');
+    label.innerHTML = `${name.charAt(0).toUpperCase()}${name.slice(1)}: `;
+    label.setAttribute('for', `new-project-${name}`);
+    formDiv.appendChild(label);
+
+    const input = document.createElement('input');
+    input.setAttribute('type', type);
+    input.setAttribute('id', `new-project-${name}`);
+    input.setAttribute('name', `new-project-${name}`);
+    input.required = required;
+    formDiv.appendChild(input);
+    return formDiv;
+  };
+
+  const createProjectForm = () => {
+    const projectCreateForm = document.createElement('div');
+    projectCreateForm.classList.add('project-form', 'project');
+
+    const form = document.createElement('form');
+    form.setAttribute('id', 'project-form');
+    projectCreateForm.appendChild(form);
+
+    const name = createProjectInputDiv('name', 'text', true);
+    name.classList.add('project-name');
+    form.appendChild(name);
+
+    const desc = createProjectInputDiv('description', 'text', false);
+    form.appendChild(desc);
+
+    const submitProject = document.createElement('div');
+    submitProject.classList.add('submit-project');
+
+    const submitProjectButton = document.createElement('input');
+    submitProjectButton.setAttribute('type', 'submit');
+    submitProjectButton.setAttribute('id', 'submit-project-button');
+    submitProject.appendChild(submitProjectButton);
+    form.appendChild(submitProject);
+
+    form.addEventListener('submit', submitNewProject);
+
+    return projectCreateForm;
+  };
+
+  const createProject = () => {
+    const projectForm = document.querySelector('.project-form');
+    projectForm.style.display = 'flex';
+    scrollToBottom();
+  };
+
+  const addProjectCreateButton = () => {
+    const projectCreateButton = document.createElement('button');
+    projectCreateButton.classList.add('project-create-button');
+    projectCreateButton.innerHTML = '+ Add Project';
+    projectCreateButton.addEventListener('click', createProject);
+
+    const projectCreateForm = createProjectForm();
+    projectCreateForm.style.display = 'none';
+    addChild(projectCreateButton);
+    addChildBefore(projectCreateForm, projectCreateButton);
+  };
+
   const displayAllProjects = () => {
     const projects = userWork.getProjects();
-    // projects.forEach((project) => displayProject(project));
     projects.forEach((obj) => {
       const [id, project] = Object.entries(obj)[0];
       displayProject(project, id);
     });
-  };
-
-  const addChild = (newDiv) => {
-    const spotlight = document.querySelector('.spotlight');
-    spotlight.appendChild(newDiv);
-  };
-
-  const addChildBefore = (newDiv, targetDiv) => {
-    const spotlight = document.querySelector('.spotlight');
-    spotlight.insertBefore(newDiv, targetDiv);
-  };
-
-  const removeChild = (target) => {
-    const spotlight = document.querySelector('.spotlight');
-    spotlight.removeChild(target);
-  };
-
-  const scrollToBottom = () => {
-    const spotlight = document.querySelector('.spotlight');
-    spotlight.scrollTop = spotlight.scrollHeight;
+    addProjectCreateButton();
   };
 
   return {
