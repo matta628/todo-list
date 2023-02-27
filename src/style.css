@@ -132,7 +132,7 @@ input {
   align-self: center;
 }
 input[type=submit],
-#cancel-button {
+.cancel-button {
   padding: 5px 15px;
   border-radius: 10px;
 }

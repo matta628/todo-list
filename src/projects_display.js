@@ -140,7 +140,8 @@ const SpotlightDisplayer = () => {
     todoFormButtons.classList.add('todo-buttons');
 
     const cancelButton = document.createElement('button');
-    cancelButton.setAttribute('id', 'cancel-button');
+    cancelButton.setAttribute('type', 'button');
+    cancelButton.classList.add('cancel-button');
     cancelButton.innerHTML = 'Cancel';
     cancelButton.addEventListener('click', deleteTodoForm.bind(this, todoForm));
     todoFormButtons.appendChild(cancelButton);
@@ -232,6 +233,12 @@ const SpotlightDisplayer = () => {
     return formDiv;
   };
 
+  const hideProjectForm = (projectForm) => {
+    const form = projectForm.querySelector('#project-form');
+    form.reset();
+    form.parentNode.style.display = 'none';
+  };
+
   const createProjectForm = () => {
     const projectCreateForm = document.createElement('div');
     projectCreateForm.classList.add('project-form', 'project');
@@ -250,10 +257,22 @@ const SpotlightDisplayer = () => {
     const submitProject = document.createElement('div');
     submitProject.classList.add('submit-project');
 
+    const projectFormButtons = document.createElement('div');
+    projectFormButtons.classList.add('project-buttons');
+
+    const cancelProjectButton = document.createElement('button');
+    cancelProjectButton.setAttribute('type', 'button');
+    cancelProjectButton.classList.add('cancel-button');
+    cancelProjectButton.innerHTML = 'Cancel';
+    cancelProjectButton.addEventListener('click', hideProjectForm.bind(this, projectCreateForm));
+    projectFormButtons.appendChild(cancelProjectButton);
+
     const submitProjectButton = document.createElement('input');
     submitProjectButton.setAttribute('type', 'submit');
     submitProjectButton.setAttribute('id', 'submit-project-button');
-    submitProject.appendChild(submitProjectButton);
+    projectFormButtons.appendChild(submitProjectButton);
+
+    submitProject.appendChild(projectFormButtons);
     form.appendChild(submitProject);
 
     form.addEventListener('submit', submitNewProject);
