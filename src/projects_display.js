@@ -183,6 +183,7 @@ const SpotlightDisplayer = () => {
   const createProjectDOM = (project) => {
     const projectDOM = document.createElement('div');
     projectDOM.classList.add('project');
+    projectDOM.dataset.id = project.id;
 
     const projectName = document.createElement('div');
     projectName.classList.add('project-name');
@@ -191,6 +192,11 @@ const SpotlightDisplayer = () => {
 
     const deleteButton = document.createElement('div');
     deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', () => {
+      userWork.removeProject(projectDOM.dataset.id);
+      projectDOM.parentElement.removeChild(projectDOM);
+      console.log(projectDOM.dataset.id);
+    });
     const deleteSVG = new Image();
     deleteSVG.src = Trash;
     deleteSVG.alt = 'trash icon';
@@ -311,10 +317,9 @@ const SpotlightDisplayer = () => {
 
   const displayAllProjects = () => {
     const projects = userWork.getProjects();
-    projects.forEach((obj) => {
-      const [id, project] = Object.entries(obj)[0];
-      displayProject(project, id);
-    });
+    const ids = Object.keys(projects);
+    ids.forEach((id) => displayProject(projects[id], id));
+
     addProjectCreateButton();
   };
 

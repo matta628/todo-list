@@ -1,21 +1,24 @@
 const UserWork = () => {
   let id = -1;
-  const projects = [];
+  const projects = {};
 
   const addProject = (project) => {
-    projects.push({ [++id]: project });
+    projects[++id] = project;
     return id;
+  };
+  const removeProject = (targetId) => {
+    delete projects[targetId];
   };
   const getProjects = () => projects;
   const getProject = (targetId) => {
-    for (let i = 0; i < projects.length; i++) {
-      if (Object.keys(projects[i])[0] === targetId) {
-        return projects[i][targetId];
-      }
+    if (targetId in projects) {
+      return projects[targetId];
     }
     return null;
   };
-  return { addProject, getProjects, getProject };
+  return {
+    addProject, removeProject, getProjects, getProject,
+  };
 };
 
 const userWork = UserWork();
