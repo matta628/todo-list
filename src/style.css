@@ -63,9 +63,18 @@
 .project-name{
   padding: 0px 5px;
   border-bottom: 2px solid var(--main-outline);
-  height: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
+  justify-content: space-between;  
+}
+
+.delete-button{
+  height: 100%;
+  display: flex;
+}
+.project-name img{
+  height: 40px;
 }
 
 .project-todos{

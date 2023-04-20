@@ -2,6 +2,7 @@
 import userWork from './user_work';
 import TodoList from './todo_list';
 import Project from './project';
+import Trash from './img/trash.svg';
 
 const SpotlightDisplayer = () => {
   const addChild = (newDiv) => {
@@ -182,10 +183,20 @@ const SpotlightDisplayer = () => {
   const createProjectDOM = (project) => {
     const projectDOM = document.createElement('div');
     projectDOM.classList.add('project');
+
     const projectName = document.createElement('div');
     projectName.classList.add('project-name');
     projectName.innerHTML = project.getName();
     projectDOM.appendChild(projectName);
+
+    const deleteButton = document.createElement('div');
+    deleteButton.classList.add('delete-button');
+    const deleteSVG = new Image();
+    deleteSVG.src = Trash;
+    deleteSVG.alt = 'trash icon';
+    deleteButton.appendChild(deleteSVG);
+    projectName.appendChild(deleteButton);
+
     const todos = displayProjectTodos(project, projectDOM);
     projectDOM.appendChild(todos);
     return projectDOM;
