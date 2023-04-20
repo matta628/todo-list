@@ -73,6 +73,14 @@
   height: 100%;
   display: flex;
 }
+.delete-button img{
+  display: none;
+}
+
+.delete-button:hover img {
+  display: flex;
+}
+
 .project-name img{
   height: 40px;
 }

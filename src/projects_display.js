@@ -197,6 +197,9 @@ const SpotlightDisplayer = () => {
       projectDOM.parentElement.removeChild(projectDOM);
       console.log(projectDOM.dataset.id);
     });
+    deleteButton.style.height = '40px';
+    deleteButton.style.width = '40px';
+
     const deleteSVG = new Image();
     deleteSVG.src = Trash;
     deleteSVG.alt = 'trash icon';
@@ -319,7 +322,6 @@ const SpotlightDisplayer = () => {
     const projects = userWork.getProjects();
     const ids = Object.keys(projects);
     ids.forEach((id) => displayProject(projects[id], id));
-
     addProjectCreateButton();
   };
 
