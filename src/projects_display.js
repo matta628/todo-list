@@ -197,8 +197,6 @@ const SpotlightDisplayer = () => {
       projectDOM.parentElement.removeChild(projectDOM);
       console.log(projectDOM.dataset.id);
     });
-    deleteButton.style.height = '40px';
-    deleteButton.style.width = '40px';
 
     const deleteSVG = new Image();
     deleteSVG.src = Trash;

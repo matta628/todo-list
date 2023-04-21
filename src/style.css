@@ -70,16 +70,14 @@
 }
 
 .delete-button{
-  height: 100%;
-  display: flex;
-}
-.delete-button img{
   display: none;
 }
 
-.delete-button:hover img {
+.project-name:hover .delete-button{
+  height: 100%;
   display: flex;
 }
+
 
 .project-name img{
   height: 40px;
