@@ -5,11 +5,18 @@ const Project = (name, desc) => {
   const getName = () => name;
   const getDesc = () => desc;
   const getTodos = () => todos;
-  const addTodo = (todo) => { todos[++id] = todo; };
-
-  // const addTodo = (todo) => todos.push(todo);
+  const addTodo = (todo) => {
+    todos[++id] = todo;
+    todo.setTodoId(id);
+  };
+  const removeTodo = (todoId) => {
+    console.log(todos);
+    console.log(todoId);
+    delete todos[todoId];
+    console.log(todos);
+  };
   return {
-    getName, getDesc, getTodos, addTodo,
+    getName, getDesc, getTodos, addTodo, removeTodo,
   };
 };
 

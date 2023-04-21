@@ -35,6 +35,8 @@ const SpotlightDisplayer = () => {
   const createTodoDOM = (todo) => {
     const todoDOM = document.createElement('div');
     todoDOM.classList.add('todo');
+    todoDOM.dataset.id = todo.getTodoId();
+    console.log(`todo.id ${todoDOM.dataset.id}`);
 
     const todoInfo = document.createElement('div');
     todoInfo.classList.add('todo-info');
@@ -53,7 +55,9 @@ const SpotlightDisplayer = () => {
     const deleteButton = document.createElement('div');
     deleteButton.classList.add('delete-button');
     deleteButton.addEventListener('click', () => {
-
+      todoDOM.parentElement.removeChild(todoDOM);
+      const project = todo.getProject();
+      project.removeTodo(todo.getTodoId());
     });
 
     const deleteSVG = new Image();
@@ -96,7 +100,6 @@ const SpotlightDisplayer = () => {
     const dueDate = todoForm.querySelector('#new-todo-dueDate').value;
     const priority = todoForm.querySelector('#new-todo-priority').value;
     const status = todoForm.querySelector('#new-todo-status').checked;
-    const newTodo = TodoList(name, desc, dueDate, priority, status);
 
     const todoDiv = todoForm.parentNode;
     todoDiv.removeChild(todoForm);
@@ -104,6 +107,7 @@ const SpotlightDisplayer = () => {
     const projectDOM = todoDiv.parentNode;
     const { id } = projectDOM.dataset;
     const project = userWork.getProject(id);
+    const newTodo = TodoList(name, desc, dueDate, priority, status, project);
     project.addTodo(newTodo);
     todoDiv.insertBefore(createTodoDOM(newTodo), todoDiv.lastChild);
     event.preventDefault();
@@ -174,7 +178,7 @@ const SpotlightDisplayer = () => {
     return todoForm;
   };
 
-  const addTodoForm = (project, projectDOM) => {
+  const addTodoForm = (projectDOM) => {
     const todoForm = createTodoForm();
     todoForm.classList.add('todo-form');
     const todos = projectDOM.lastChild;
@@ -193,7 +197,7 @@ const SpotlightDisplayer = () => {
       todos.appendChild(todoDOM);
     });
     const addTodoButton = createAddTodoButton();
-    addTodoButton.addEventListener('click', addTodoForm.bind(this, project, projectDOM));
+    addTodoButton.addEventListener('click', addTodoForm.bind(this, projectDOM));
     todos.appendChild(addTodoButton);
     return todos;
   };
