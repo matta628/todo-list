@@ -36,15 +36,32 @@ const SpotlightDisplayer = () => {
     const todoDOM = document.createElement('div');
     todoDOM.classList.add('todo');
 
+    const todoInfo = document.createElement('div');
+    todoInfo.classList.add('todo-info');
+    todoDOM.appendChild(todoInfo);
+
     const todoName = document.createElement('div');
     todoName.classList.add('todo-name');
     todoName.innerHTML = todo.getName();
-    todoDOM.appendChild(todoName);
+    todoInfo.appendChild(todoName);
 
     const todoDueDate = document.createElement('div');
     todoDueDate.classList.add('todo-due-date');
     todoDueDate.innerHTML = todo.getDueDate();
-    todoDOM.appendChild(todoDueDate);
+    todoInfo.appendChild(todoDueDate);
+
+    const deleteButton = document.createElement('div');
+    deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', () => {
+
+    });
+
+    const deleteSVG = new Image();
+    deleteSVG.src = Trash;
+    deleteSVG.alt = 'trash icon';
+    deleteButton.appendChild(deleteSVG);
+    todoDOM.appendChild(deleteButton);
+
     return todoDOM;
   };
 
@@ -170,7 +187,8 @@ const SpotlightDisplayer = () => {
   const displayProjectTodos = (project, projectDOM) => {
     const todos = document.createElement('div');
     todos.classList.add('project-todos');
-    project.getTodos().forEach((todo) => {
+
+    Object.values(project.getTodos()).forEach((todo) => {
       const todoDOM = createTodoDOM(todo);
       todos.appendChild(todoDOM);
     });
@@ -195,7 +213,6 @@ const SpotlightDisplayer = () => {
     deleteButton.addEventListener('click', () => {
       userWork.removeProject(projectDOM.dataset.id);
       projectDOM.parentElement.removeChild(projectDOM);
-      console.log(projectDOM.dataset.id);
     });
 
     const deleteSVG = new Image();
